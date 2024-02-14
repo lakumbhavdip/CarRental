@@ -14,8 +14,10 @@ class Customer(models.Model):
     address = models.CharField(max_length=200,null=True)
     password = models.CharField(max_length=200,null=True)
     created_at = models.DateTimeField(default=timezone.now,null=True)
-    updated_at = models.DateTimeField(default=timezone.now,null=True)
-    deleted_at = models.DateTimeField(default=timezone.now,null=True)    
+    updated_at = models.DateTimeField(null=True)
+    deleted_at = models.DateTimeField(null=True)    
+    is_deleted = models.BooleanField(default=False)
+    
 
 class Car(models.Model):
     brand = models.CharField(max_length=100)
@@ -29,4 +31,6 @@ class CarBooking(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     booking_date = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(default=timezone.now,null=True)
-    deleted_at = models.DateTimeField(default=timezone.now,null=True)
+    deleted_at = models.DateTimeField(null=True)
+    is_deleted = models.BooleanField(default=False)
+    
